@@ -12,12 +12,13 @@ This repository contains all the code used to create the miRNA-targeting LX-miR 
 * [Pandas](http://pandas.pydata.org/) - dataframes 
 * [Paramiko](http://www.paramiko.org/) - SSH connection
 * [PyODBC](https://github.com/mkleehammer/pyodbc) - connects to MSSQL database
+* [RNAfold](http://www.tbi.univie.ac.at/RNA/) - RNA secondary structure prediction
 * [SciPy](https://www.scipy.org/) - scientific computing functions
 * [SSHTunnel](https://pypi.python.org/pypi/sshtunnel) - SSH tunnel
 
 ## Database Summary
 
-The code in this repository will create a database with 5 tables. Below is a summary of this database.
+The code in this repository will create a database with 6 tables. Below is a summary of this database.
 
 The <b>PrimaryMicroRNA</b> table contains information about all 1881 human primary microRNAs. The PriID is the accession number for the miRNA and is the <a href="http://www.tutorialspoint.com/sql/sql-primary-key.htm">primary key</a> for this table. The chromosome on which the primary miRNA is located is stored as 1-22 or X or Y. The StemloopSeq contains the DNA sequence of the stemloop as anotated in <a href="http://www.mirbase.org/">miRBase</a>. The LongSeq is the stemloop sequence plus an additional 20 bp on either side, which allows for all sgRNA with cutting sites in the stemloop to be identified. The RNAfold dot bracket structure of the stemloop sequence is also provided, which helps determine where in the stemloop the sgRNA will cleave. The miRNA family name is provided if the primary miRNA is known to be part of a miRNA family. The HighConfidence variable is a 'T' if the primary miRNA is considered high confidence (see <a href="http://www.mirbase.org/blog/2014/07/high-confidence-mirna-set-available-for-mirbase-21/">this blog post</a> and <a href="http://nar.oxfordjournals.org/content/42/D1/D68.full">this paper</a> for more about the high confidence anotation).
 
@@ -36,6 +37,8 @@ If multiple possible exclussion reasons apply, the reason most likely to affect 
 The <b>SgRNATargetInformation</b> table contains information about each miRNA site targeted by the sgRNAs. This table contains any data specific to a single site, not to the sgRNA which can target multiple sgRNAs. This includes the LongSg sequence: NNNN[sgRNA target 20]NGGNNN, which is used for Doench/Azimuth scoring (see above). The PriID of the targeted miRNA corresponds to the PriID in the PrimaryMiRNA table and has a <a href="http://www.w3schools.com/sql/sql_foreignkey.asp">foreign key constraint</a>. If the cleavage site falls within a mature miRNA site, the MatID also corresponds the the MatID in the MatureMiRNA table and has a foreign key constraint. The SgID also has a foreign key constraint with the SgIDs in the SingleGuideRNA table. 
 
 The <b>OverlappingSgRNAs</b> table contains information about which sgRNAs have identical seeds. These sgRNAs which target the same miRNA are likely to have similar off-target sites and may create false positives. Therefore, only one sgRNA with any given seed is used when there are enough sgRNA to allow for the top four to be choosen. The SelectedSgID has a higher ZhangScore than the OverlappingSgID, which is discarded. 
+
+The <b>ControlSgRNA</b> table contains the name and the sequence of the control sgRNAs used along with the ID originally used in the paper from whtich the control sgRNA was taken.
 
 The <b>InPool</b> table contains information the sgRNAs which are included in the miRNA-ome pool. Includes the id of the sgRNA or the name of the sgRNA (for controls) and the sequence of the ssDNA oligo submitted for plate synthesis. 
 
@@ -109,6 +112,15 @@ The <b>InPool</b> table contains information the sgRNAs which are included in th
 |-|-|
 | SelectedSgID | int |
 | OverlappingSgID | int|
+
+### ControlSgRNA
+
+
+| Variable | Type |
+| -------- | ---- |
+| SgRNAName | varchar(50) |
+| SgRNA    | char(20) |
+| LiteratureSgRNA | varchar(200) |
 
 ### InPool
 

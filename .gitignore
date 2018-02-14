@@ -1,0 +1,5 @@
+# ignore compiled python
+*.pyc
+
+# Ignore API key file
+Azimuth_API_key.txt
