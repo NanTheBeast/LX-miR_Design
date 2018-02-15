@@ -1,0 +1,17 @@
+2018-02-15 12:33:52,966 - INFO - Successfully connected to server
+2018-02-15 12:33:52,966 - INFO - Moving file Control sgRNAs/lit_controls.fastq to server
+2018-02-15 12:33:53,312 - INFO - File Control sgRNAs/lit_controls.fastq sucessfully moved to /data/jkurata/lit_controls.fastq on server
+2018-02-15 12:33:53,312 - INFO - Start alignment using command: export PATH=$PATH:/opt/bowtie-0.12.7; cd /data/jkurata/; bowtie -v 0 -a -p 4 ../UCSC/hg19/bowtie-indexes/hg19 -q lit_controls.fastq lit_controls_bowtie-aligned.sam
+2018-02-15 12:33:54,213 - INFO - # reads processed: 2122
+
+2018-02-15 12:33:54,415 - INFO - # reads with at least one reported alignment: 17 (0.80%)
+
+2018-02-15 12:33:54,417 - INFO - # reads that failed to align: 2105 (99.20%)
+
+2018-02-15 12:33:54,420 - INFO - Reported 21 alignments to 1 output stream(s)
+
+2018-02-15 12:33:54,421 - INFO - Copying file /data/jkurata/lit_controls_bowtie-aligned.sam from server to Control sgRNAs/lit_controls_bowtie-aligned.sam
+2018-02-15 12:33:54,453 - INFO - The file has successfully been moved
+2018-02-15 12:33:54,453 - INFO - Cleaning up...
+2018-02-15 12:33:54,454 - INFO - Deleting files using command: cd /data/jkurata/; rm lit_controls*.fastq; rm lit_controls*.sam
+2018-02-15 12:36:58,342 - INFO - Closed connection to server

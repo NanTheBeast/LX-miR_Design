@@ -1,0 +1,15 @@
+2018-02-15 10:51:58,704 - INFO - Successfully connected to server
+2018-02-15 10:51:58,704 - INFO - Moving file Align sgRNAs/miR_sgRNAs.fastq to server
+2018-02-15 10:51:59,236 - INFO - File Align sgRNAs/miR_sgRNAs.fastq sucessfully moved to /data/jkurata/miR_sgRNAs.fastq on server
+2018-02-15 10:51:59,236 - INFO - Start alignment using command: export PATH=$PATH:/opt/bowtie-0.12.7; cd /data/jkurata/; bowtie  -v 1 -a -p 8 ../UCSC/hg19/bowtie-indexes/hg19 -q miR_sgRNAs.fastq miR_sgRNAs_bowtie-aligned.sam
+2018-02-15 10:52:40,903 - INFO - # reads processed: 26344
+
+2018-02-15 10:52:41,104 - INFO - # reads with at least one reported alignment: 26270 (99.72%)
+
+2018-02-15 10:52:41,104 - INFO - # reads that failed to align: 74 (0.28%)
+
+2018-02-15 10:52:41,105 - INFO - Reported 2473427 alignments to 1 output stream(s)
+
+2018-02-15 10:52:41,105 - INFO - Copying file /data/jkurata/miR_sgRNAs_bowtie-aligned.sam from server to Align sgRNAs/miR_sgRNAs_bowtie-aligned.sam
+2018-02-15 10:52:46,260 - INFO - The file has successfully been moved
+2018-02-15 10:52:46,375 - INFO - Closed connection to server

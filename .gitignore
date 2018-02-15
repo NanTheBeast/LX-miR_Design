@@ -3,3 +3,6 @@
 
 # Ignore API key file
 Azimuth_API_key.txt
+
+# Files too large (>100MB) to be pushed to github
+'Align sgRNAs/**.sam'
